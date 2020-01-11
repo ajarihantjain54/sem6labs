@@ -24,6 +24,17 @@ int main()
 				cb = getc(fa);
 			}
 		}
+		else if(ca == '"')
+		{
+			putc(ca,fb)
+			ca = getc(fa);
+			while(ca != '"')
+			{
+				putc(ca,fb);
+				ca = getc(fa);
+			}
+			putc(ca,fb);
+		}
 		else 
 		{
 			putc(ca , fb);

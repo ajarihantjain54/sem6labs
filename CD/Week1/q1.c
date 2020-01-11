@@ -28,6 +28,17 @@ int main()
 			putc(cb,fb);
 			putc(ca,fb);
 		}
+		else if(ca == '"')
+		{
+			putc(ca,fb)
+			ca = getc(fa);
+			while(ca != '"')
+			{
+				putc(ca,fb);
+				ca = getc(fa);
+			}
+			putc(ca,fb);
+		}
 		else 
 		{
 			putc(ca , fb);

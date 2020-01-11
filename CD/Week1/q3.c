@@ -3,33 +3,33 @@
 #include<string.h>
 #include<ctype.h>
 
-void removeSpaces(FILE *fa , FILE *fb)
-{
+// void removeSpaces(FILE *fa , FILE *fb)
+// {
 
-	int ca , cb;
-	ca = getc(fa);
-	while(ca != EOF)
-	{
-		//printf("%d \n",ca);
-		if(ca == ' ' || ca == '\t')
-		{
-			cb = getc(fa);
-			while(cb == ' ' || cb == '\t' || cb == '\n')
-			{
-				cb = getc(fa);
-			}
-			ca = cb;
-			cb = ' ';
-			putc(cb,fb);
-			putc(ca,fb);
-		}
-		else 
-		{
-			putc(ca , fb);
-		}
-		ca = getc(fa);
-	}
-}
+// 	int ca , cb;
+// 	ca = getc(fa);
+// 	while(ca != EOF)
+// 	{
+// 		//printf("%d \n",ca);
+// 		if(ca == ' ' || ca == '\t')
+// 		{
+// 			cb = getc(fa);
+// 			while(cb == ' ' || cb == '\t' || cb == '\n')
+// 			{
+// 				cb = getc(fa);
+// 			}
+// 			ca = cb;
+// 			cb = ' ';
+// 			putc(cb,fb);
+// 			putc(ca,fb);
+// 		}
+// 		else 
+// 		{
+// 			putc(ca , fb);
+// 		}
+// 		ca = getc(fa);
+// 	}
+// }
 
 
 
@@ -77,20 +77,25 @@ ca = getc(fc);
 while(ca != EOF)
 {
 	if(ca == '\n')
+	{
 		line++;
+		column = 0;
+	}
 	if(isChar(ca) != 0)
 	{
 		char* word = (char*)malloc(sizeof(char)*20);
 		int pos = 0;
 		word[pos] = (char)ca;
 		pos++;
+		int sudoColumn = 0;
 		cb = getc(fc);
-
+		sudoColumn++;
 		while(isChar(cb) != 0)
 		{
 			word[pos] = (char)cb;
 			pos++;
 			cb = getc(fc);
+			sudoColumn++;
 		}
 		word[pos] = '\0';
 		
@@ -103,8 +108,11 @@ while(ca != EOF)
 				printf("%c",b);
 			}
 			printf("\n");
-			 printf("\n Line number = %d \n",line);
+			printf("\n Line number = %d \n",line);
+			printf("\n column number = %d \n",column);
+			 //
 		}
+		column += sudoColumn;
 
 	}
 	ca = getc(fc);
@@ -116,15 +124,15 @@ while(ca != EOF)
 
 int main()
 {
-	// printf("Enter the file name \n");
-	// char* str = (char*)malloc(sizeof(char)*20);
-	// gets(str);
-	// printf("\n %s",str);
-	// FILE *fa , *fb;
-	// fa = fopen(str,"r");
-	// fb = fopen("q3out.c","w");
+	printf("Enter the file name \n");
+	char* str = (char*)malloc(sizeof(char)*20);
+	gets(str);
+	printf("\n %s",str);
+	FILE *fa , *fb;
+	fa = fopen(str,"r");
+	fb = fopen("q3out.c","w");
 	// removeSpaces(fa,fb);
-	// fclose(fb);
+	fclose(fb);
 	// printf("\nThe spaces have been removed \n");
 	printKeywords();
 
