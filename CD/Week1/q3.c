@@ -67,7 +67,7 @@ int isChar(int c)
 
 void printKeywords()
 {
-printf("Lets print keywords \n");
+// printf("Lets print keywords \n");
 int line = 0;
 int column = 0;
 FILE *fc;

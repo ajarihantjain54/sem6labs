@@ -41,21 +41,3 @@ void removeSpaces(FILE *fa, FILE *fb)
 
 
 
-int main()
-{
-	FILE *fa , *fb;
-	
-	fa = fopen("q1in.c","r");
-	if(fa == NULL)
-	{
-		printf("The file was not found");
-		exit(0);
-	}
-	fb = fopen("q1out.c","w");
-	removeSpaces(fa , fb);
-	fclose(fa);
-	fclose(fb);
-
-
-}
-

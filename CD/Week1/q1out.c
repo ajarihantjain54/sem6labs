@@ -1,3 +1,3 @@
 Hello
-	beta
-Kaise   ho
+ beta
+Kaise ho

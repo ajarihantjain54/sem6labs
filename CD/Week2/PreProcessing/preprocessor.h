@@ -33,21 +33,3 @@ void removePreprocessor(FILE *fa , FILE *fb)
 		ca = getc(fa);
 	}
 }
-int main()
-{
-	FILE *fa , *fb;
-	
-	fa = fopen("q2in.c","r");
-	if(fa == NULL)
-	{
-		printf("The file was not found");
-		exit(0);
-	}
-	fb = fopen("q2out.c","w");
-	removePreprocessor(fa ,fb);
-	fclose(fa);
-	fclose(fb);
-
-
-}
-

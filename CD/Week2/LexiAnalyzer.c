@@ -1,6 +1,10 @@
 #include<stdio.h>
 #include<string.h>
-
+#include<ctype.h>
+#include<stdlib.h>
+#include "PreProcessing/comments.h"
+#include "PreProcessing/spaces.h"
+#include "PreProcessing/preprocessor.h"
 
 struct token
 {
@@ -11,12 +15,28 @@ struct token
 
 typedef struct token tok;
 
-char** ARO = {"+","-","%","*","%","++"};
-char** RO = {"==","!=",">","<",">=","<="};
-char** LO = {"&&","||","!"};
-char** ASO = {"=","+=","-=","*=","/=","%="};
-char** BO = {"&","|","^","~","<<",">>"};
+//char** ARO = {"+","-","%","*","%","++"};
+// char** RO = {"==","!=",">","<",">=","<="};
+// char** LO = {"&&","||","!"};
+// char** ASO = {"=","+=","-=","*=","/=","%="};
+// char** BO = {"&","|","^","~","<<",">>"};
 
+void preProcessing(FILE *fa , FILE *fb)
+{
+	removeSpaces(fa , fb);
+	fclose(fa);
+	fclose(fb);
+	fa = fopen("./Outputs/q1rs.c","r");
+	fb = fopen("./Outputs/q1rc.c","w");
+	removeComments(fa , fb);
+	fclose(fa);
+	fclose(fb);
+	fa = fopen("./Outputs/q1rc.c","r");
+	fb = fopen("./Outputs/q1rp.c","w");
+	removePreprocessor(fa , fb);
+	fclose(fa);
+	fclose(fb);
+}
 int isOther(char* str)
 {
     if(!strcmp(str, "+") || !strcmp(str, "-")
@@ -36,6 +56,7 @@ int isOther(char* str)
         {
             return 11;
         }
+    return 12;
 }
 
 int isKeyword(char* str)
@@ -89,25 +110,32 @@ int isIdentifier(char* str)
 
 void printToken(tok* t)
 {
-    printf("< %s %d %d %d >\n",t->lexemename,t->row,t->col,t->type);
+    printf("< %s %d %d ",t->lexemename,t->row,t->col);
+    char types[][20] = {"NOTHING","STRING-LITERAL" , "KEYWORD" , "IDENTIFIER" , "DIGIT-LITERAL", "LB", "RB","LC","RC","ASSIGNMENT-OPERATOR","RELATIONAL-OPERATOR","LOGICAL-OPERATOR","SPEICAL-SYMBOLS"};
+    printf("%s >",types[t->type]);
 }
 
 int main()
 {
 	FILE *fa , *fb;
 	fa = fopen("q1in.c","r");
-	fb = fopen("q1out.c","w");
+	fb = fopen("./Outputs/q1rs.c","w");
+	preProcessing(fa,fb);
+	fa = fopen("./Outputs/q1rp.c","r");
+	fb = fopen("./Outputs/q1final.c","w");
 	int ca , cb;
 	ca = getc(fa);
 	int line = 0;
 	int column = 0;
 	while(ca != EOF)
 	{
+		//printf("%c \n",ca);
         if(ca == '\n')
         {
             line++;
             column = 0;
             ca = getc(fa);
+            printf("\n");
         }
         else if(ca == ' ')
         {
@@ -140,7 +168,7 @@ int main()
                 }
 
 
-                else if(isalpha(ca)!=0 || ca=='_')
+                else if((isalpha(ca)!=0) || ca=='_')
                 {
                     t->lexemename[pos++] = ca;
                     ca = getc(fa);
@@ -183,7 +211,7 @@ int main()
                     t->lexemename[pos++] = ca;
                     ca = getc(fa);
                     sudoColumn++;
-                    while(ca != ' ' )
+                    while(ca != ' ')
                     {
                         if(ca == '\n')
                             break;
@@ -205,7 +233,7 @@ int main()
                     t->lexemename[pos] = '\0';
                     t->row = line;
                     t->col = column;
-                    t->type =  51;
+                    t->type =  5;
                     printToken(t);
                     ca = getc(fa);
                         sudoColumn++;
@@ -216,7 +244,7 @@ int main()
                     t->lexemename[pos] = '\0';
                     t->row = line;
                     t->col = column;
-                    t->type =  52;
+                    t->type =  6;
                     printToken(t);
                     ca = getc(fa);
                         sudoColumn++;
@@ -227,7 +255,7 @@ int main()
                     t->lexemename[pos] = '\0';
                     t->row = line;
                     t->col = column;
-                    t->type =  61;
+                    t->type =  7;
                     printToken(t);
                     ca = getc(fa);
                         sudoColumn++;
@@ -238,7 +266,7 @@ int main()
                     t->lexemename[pos] = '\0';
                     t->row = line;
                     t->col = column;
-                    t->type =  62;
+                    t->type =  8;
                     printToken(t);
                     ca = getc(fa);
                         sudoColumn++;
@@ -247,9 +275,9 @@ int main()
                 {
                     t->lexemename[pos++] = ca;
                     ca = getc(fa);
-                     while(ca!=' ')
+                    while(ca!=' ')
                     {
-                        if(isdigit(ca)!=0 && isalpha(ca)!= 0 && ca == '_')
+                        if(isdigit(ca)!=0 || isalpha(ca)!= 0 || ca == '_')
                             break;
                         if(ca == '\n')
                             break;
@@ -261,6 +289,7 @@ int main()
                     t->row = line;
                     t->lexemename[pos] = '\0';
                     t->type = isOther(t->lexemename);
+                    printToken(t);
 
                 }
 
