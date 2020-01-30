@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 #include "mpi.h"
 #include <stdlib.h>
 #define  MCW MPI_COMM_WORLD 
@@ -11,7 +11,5 @@ void ErrorHandler(int error_code)
 		MPI_Error_class(error_code,&error_class);
 		MPI_Error_string(error_class,error_string,&length_of_error_string);
 		fprintf(stderr,"%s%d\n",error_string,length_of_error_string);
-		MPI_Error_string(error_code,error_string,&length_of_error_string);
-		fprintf(stderr,"Hello error code %s \n ",error_string);
 	}
 }
