@@ -13,7 +13,7 @@ int main(int argc , char* argv[])
 	MPI_Status status;
 	if(rank==0)
 	{
-		printf("Enter a word in master process: ");
+		printf("Ente                                                                                                             r a word in master process: ");
 		gets(arr2);
 		length = strlen(arr2);
 		MPI_Ssend(arr2,20,MPI_CHAR,1,1,MPI_COMM_WORLD);

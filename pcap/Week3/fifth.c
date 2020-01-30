@@ -47,6 +47,8 @@ int main(int argc , char* argv[])
 		else
 			sub[i] = 0;
 	}
+	int even = 0;
+	int odd = 0;
 	MPI_Gather(sub,div,MPI_INT,arr3,div,MPI_INT,0,MPI_COMM_WORLD);
 	if(rank == 0)
 	{
@@ -54,10 +56,15 @@ int main(int argc , char* argv[])
 		for(int i =0;i<M;i++)
 		{
 			printf("%d \t",arr3[i]);
+			if(arr3[i]==0)
+				even++;
+			else
+				odd++;
 		}
 
 		printf("\n");
-
+		printf("Even = %d \n",even);
+		printf("Odd = %d \n",odd);
 	}
 
 

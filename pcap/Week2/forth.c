@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
 			send = 0;
 		else
 			send = rank+1;
-		printf("send = %d   rank = %d  num = %d \n",send,rank , num);
 		MPI_Ssend(&x,1,MPI_INT,send,1,MPI_COMM_WORLD);
 		printf("I have sent %d in process %d \n ",x,rank);
 		
