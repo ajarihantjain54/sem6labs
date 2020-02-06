@@ -12,7 +12,6 @@ int main(int argc , char* argv[])
 	}
 	error_code =  MPI_Scan(&fact,&factsum,0 ,MPI_INT,MPI_SUM,fact);
 	//ErrorHandler(error_code);
-	printf("%d \n",error_code);
 	if(rank==size-1)
 	{
 		printf("The sum of the factorial is %d \n",factsum);

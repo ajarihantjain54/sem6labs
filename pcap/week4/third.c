@@ -34,6 +34,7 @@ int main(int argc , char* argv[])
 		}
 	}
 	int error = MPI_Reduce(&count,&finalCount,1,MPI_INT,MPI_SUM,0,MCW);
+	ErrorHandler(error);
 	MPI_Barrier(MCW);
 	if(rank==0)
 	{
