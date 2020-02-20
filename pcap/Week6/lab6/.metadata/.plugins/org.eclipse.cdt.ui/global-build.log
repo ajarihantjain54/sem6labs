@@ -1,0 +1,38 @@
+10:13:56 **** Build of configuration Debug for project q4 ****
+make all 
+Building file: ../q4.c
+Invoking: GCC C Compiler
+gcc -I/usr/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"q4.d" -MT"q4.d" -o "q4.o" "../q4.c"
+../q4.c: In function ‘main’:
+../q4.c:44:2: warning: ‘clCreateCommandQueue’ is deprecated [-Wdeprecated-declarations]
+  cl_command_queue command_queue = clCreateCommandQueue(context, device_id, CL_QUEUE_PROFILING_ENABLE, &ret);
+  ^
+In file included from ../q4.c:3:0:
+/usr/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+../q4.c:61:11: warning: unused variable ‘event’ [-Wunused-variable]
+  cl_event event;
+           ^
+../q4.c:9:10: warning: unused variable ‘len’ [-Wunused-variable]
+  int LS, len;
+          ^
+../q4.c:8:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+Finished building: ../q4.c
+ 
+Building target: q4
+Invoking: GCC C Linker
+gcc -L/usr/lib/x86_64-linux-gnu -o "q4"  ./q4.o   -lOpenCL
+Finished building target: q4
+ 
+10:14:01 **** Incremental Build of configuration Debug for project q4 ****
+make all 
+make: Nothing to be done for 'all'.
+10:14:50 **** Incremental Build of configuration Debug for project q4 ****
+make all 
+make: Nothing to be done for 'all'.
+10:15:18 **** Incremental Build of configuration Debug for project q4 ****
+make all 
+make: Nothing to be done for 'all'.
