@@ -350,6 +350,13 @@ int main()
             column++;
             ca = getc(fa);
         }
+        else if(ca == "#")
+        {
+            while(ca!='\n')
+                ca = getc(fa);
+            ca = getc(fa);
+            line++;
+        }
         else
         {
                 int sudoColumn = 0;
