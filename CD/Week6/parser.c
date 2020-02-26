@@ -26,7 +26,7 @@ void proc_program()
 				lookahead = getNextToken();
 				if(lookahead.type == 7)
 				{
-					
+
 					proc_declarations();
 					proc_statementList();
 					lookahead = getNextToken();
@@ -35,7 +35,7 @@ void proc_program()
 						flag = 1;
 						printf("The string has been accepted \n");
 					}
-					
+
 				}
 			}
 		}
@@ -153,7 +153,6 @@ int proc_assignStat()
 {
 	printf("Inside proc_assignStat \n");
 	int flag = 0;
-	lookahead = getNextToken();
 	if(lookahead.type == 3)
 	{
 		lookahead = getNextToken();

@@ -29,6 +29,7 @@ typedef struct ListElement elements;
 
 
 elements* head = NULL;
+elements* gabru = NULL;
 
 char types[][20] = {"NOTHING","STRING-LITERAL" , "KEYWORD" , "IDENTIFIER" , "DIGIT-LITERAL", "LB", "RB","LC","RC","ASSIGNMENT-OPERATOR","RELATIONAL-OPERATOR","LOGICAL-OPERATOR","SPEICAL-SYMBOLS","LSB","RSB" ,"ERROR"};
 
@@ -314,6 +315,29 @@ void printList()
 
     }
 }
+
+tok* getNextToken()
+{
+    if(head == NULL)
+    {
+        printf("Hello\n");
+        return NULL;
+    }
+    else
+    {
+        tok* re = (tok*)malloc(sizeof(tok));
+        re = gabru->to;
+        gabru = gabru->next;
+        return re;
+
+
+    }
+
+}
+
+
+
+
 void printToken(tok* t)
 {
     printf("< %s %d %d ",t->lexemename,t->row,t->col);
@@ -322,7 +346,7 @@ void printToken(tok* t)
     enterIntoList(t);
 }
 
-int main()
+int helloEveryone()
 {
 	FILE *fa , *fb;
 	fa = fopen("q1in.c","r");
@@ -491,7 +515,12 @@ int main()
 
                     printToken(t);
                     ca = getc(fa);
-                        sudoColumn++;
+                    printf("\n Kaise ho");
+                    if(ca == EOF)
+                        printf(" EOF \n");
+                    else
+                        printf("NOT EOF \n");
+                    printf("ca value: %d, ca: %c\n",ca, ca);
                 }
                 else
                 {
@@ -520,9 +549,11 @@ int main()
         }
     }
    // printf("Now printing the new list \n");
-   // printList();
-    printSymbolTable(head);
+    printList();
+  // printSymbolTable(head);
+   gabru = head;
 }
+
 
 
 
