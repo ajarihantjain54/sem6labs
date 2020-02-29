@@ -336,6 +336,26 @@ tok* getNextToken()
 }
 
 
+tok* ungetNextToken()
+{
+    if(head == NULL)
+    {
+        printf("Hello\n");
+        return NULL;
+    }
+    else
+    {
+        tok* re = (tok*)malloc(sizeof(tok));
+        gabru = gabru->previous;
+        re = gabru->to;
+        printf("Unget Token called returning %s \n",re->lexemename);
+        return re;
+
+
+    }
+
+}
+
 
 
 void printToken(tok* t)

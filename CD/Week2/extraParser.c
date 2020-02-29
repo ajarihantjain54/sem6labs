@@ -180,6 +180,33 @@ int proc_statement()
 
 }
 
+int proc_dprime()
+{
+	printf("I am inside dprime \n");
+	if(lookahead->type == 2 && !strcmp(lookahead->lexemename,"else"))
+	{
+		lookahead = getNextToken();
+		if(lookahead->type == 5 )
+		{
+			lookahead = getNextToken();
+			proc_statementList();
+			if(lookahead->type == 12 && !strcmp(lookahead->lexemename,";"))
+					{
+						return 1;
+					}
+			lookahead = ungetNextToken();
+
+
+		}
+		lookahead = ungetNextToken();
+	}
+	else
+	{
+		printf("Returning epsilon from proc_dprime \n");
+		return 1;
+	}
+}
+
 int proc_assignStat()
 {
 	printf("Inside proc_assignStat \n");
