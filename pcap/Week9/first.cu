@@ -10,7 +10,6 @@ __global__ void transpose(int *a,int *t)
 	int n = v*blockDim.x+threadIdx.x;
 	int ta = (int)powf(a[n],v+1);
 	t[n] = ta;
-	printf("%d row %d element  = %d  result  \n",v,n,ta);
 }
 
 

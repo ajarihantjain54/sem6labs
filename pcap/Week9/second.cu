@@ -17,7 +17,6 @@ __global__ void addCol(int *a , int *b , int *t)
 	int index = threadIdx.x;
  	for(lp = 0 ;lp<blockDim.x;lp++)
  	{	
- 		printf("Index  = %d \n",index);
  		t[index] = a[index]+b[index];
  		index += blockDim.x;
  	}
@@ -30,7 +29,6 @@ __global__ void addRow(int *a , int *b , int *t)
  	int index = threadIdx.x*blockDim.x;
  	for(lp = 0 ;lp<blockDim.x;lp++)
  	{	
- 		printf("index = %d \n",index);
  	t[index] = a[index] + b[index];
  	index++;
  	}
